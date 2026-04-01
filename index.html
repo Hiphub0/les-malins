@@ -1,0 +1,1230 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>BonsPlansCourses – Partagez les meilleures promos</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --green: #1D9E75;
+  --green-dark: #0F6E56;
+  --green-light: #E1F5EE;
+  --green-mid: #5DCAA5;
+  --orange: #D85A30;
+  --orange-light: #FAECE7;
+  --blue: #378ADD;
+  --blue-light: #E6F1FB;
+  --amber: #BA7517;
+  --amber-light: #FAEEDA;
+  --red: #E24B4A;
+  --red-light: #FCEBEB;
+  --bg: #F7F6F1;
+  --surface: #FFFFFF;
+  --surface2: #F0EFE9;
+  --border: rgba(0,0,0,0.08);
+  --border-strong: rgba(0,0,0,0.15);
+  --text: #1A1A18;
+  --text2: #5A5A55;
+  --text3: #9A9A94;
+  --radius: 12px;
+  --radius-sm: 8px;
+  --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04);
+  --shadow-card: 0 2px 8px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+/* ── NAV ── */
+nav {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+.nav-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 18px;
+  color: var(--text);
+  text-decoration: none;
+  flex-shrink: 0;
+}
+.nav-logo-icon {
+  width: 34px;
+  height: 34px;
+  background: var(--green);
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+}
+.nav-logo span { color: var(--green); }
+.nav-spacer { flex: 1; }
+.nav-search {
+  flex: 1;
+  max-width: 320px;
+  display: flex;
+  align-items: center;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 0 12px;
+  gap: 6px;
+}
+.nav-search input {
+  border: none;
+  background: transparent;
+  font-size: 14px;
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  width: 100%;
+  padding: 7px 0;
+  outline: none;
+}
+.nav-search input::placeholder { color: var(--text3); }
+.nav-search-icon { color: var(--text3); font-size: 14px; }
+.nav-btns { display: flex; align-items: center; gap: 8px; }
+.btn {
+  padding: 8px 16px;
+  border-radius: 24px;
+  font-size: 14px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+.btn-ghost {
+  background: transparent;
+  color: var(--text2);
+  border: 1px solid var(--border-strong);
+}
+.btn-ghost:hover { background: var(--surface2); }
+.btn-primary {
+  background: var(--green);
+  color: #fff;
+}
+.btn-primary:hover { background: var(--green-dark); }
+.btn-sm { padding: 6px 12px; font-size: 13px; }
+
+.user-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: #fff;
+  cursor: pointer;
+  flex-shrink: 0;
+  border: 2px solid transparent;
+  transition: border-color 0.15s;
+}
+.user-avatar:hover { border-color: var(--green-mid); }
+
+/* ── MAIN ── */
+.main {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 1.5rem 1.25rem;
+}
+
+/* ── HERO ── */
+.hero {
+  background: var(--green);
+  border-radius: 20px;
+  padding: 2rem 2rem;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  right: -40px;
+  top: -40px;
+  width: 200px;
+  height: 200px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 50%;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  right: 60px;
+  bottom: -60px;
+  width: 140px;
+  height: 140px;
+  background: rgba(255,255,255,0.04);
+  border-radius: 50%;
+}
+.hero-emoji { font-size: 48px; flex-shrink: 0; }
+.hero h2 {
+  font-family: 'Syne', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 4px;
+}
+.hero p { color: rgba(255,255,255,0.8); font-size: 14px; }
+.hero-cta {
+  margin-left: auto;
+  flex-shrink: 0;
+}
+.hero-cta .btn {
+  background: #fff;
+  color: var(--green-dark);
+  font-weight: 600;
+}
+.hero-cta .btn:hover { background: rgba(255,255,255,0.9); }
+
+/* ── STATS ── */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 1.75rem;
+}
+.stat-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+  box-shadow: var(--shadow-card);
+}
+.stat-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--text);
+}
+.stat-label { font-size: 12px; color: var(--text3); margin-top: 2px; }
+
+/* ── TOOLBAR ── */
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+}
+.toolbar-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  flex: 1;
+}
+.filter-chips { display: flex; gap: 6px; flex-wrap: wrap; }
+.chip {
+  padding: 5px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  border: 1px solid var(--border-strong);
+  cursor: pointer;
+  color: var(--text2);
+  background: var(--surface);
+  transition: all 0.15s;
+  font-family: 'DM Sans', sans-serif;
+}
+.chip:hover { background: var(--surface2); }
+.chip.active { background: var(--green); color: #fff; border-color: var(--green); }
+
+/* ── CARDS ── */
+.cards-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+@media (max-width: 640px) { .cards-grid { grid-template-columns: 1fr; } }
+
+.deal-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  transition: box-shadow 0.2s, transform 0.2s;
+  display: flex;
+  flex-direction: column;
+}
+.deal-card:hover { box-shadow: var(--shadow); transform: translateY(-2px); }
+
+.deal-photo {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  display: block;
+  background: var(--surface2);
+}
+.deal-photo-placeholder {
+  width: 100%;
+  height: 130px;
+  background: var(--surface2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+}
+
+.deal-body { padding: 14px; flex: 1; display: flex; flex-direction: column; gap: 8px; }
+
+.deal-top-row { display: flex; align-items: flex-start; gap: 8px; }
+.deal-type-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+.badge-promo { background: var(--green-light); color: var(--green-dark); }
+.badge-reduc { background: var(--orange-light); color: var(--orange); }
+.badge-lot { background: var(--blue-light); color: var(--blue); }
+.badge-cashback { background: var(--amber-light); color: var(--amber); }
+.badge-gratuit { background: #EAF3DE; color: #3B6D11; }
+
+.deal-savings {
+  margin-left: auto;
+  font-family: 'Syne', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--green);
+}
+.deal-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.3;
+}
+.deal-desc { font-size: 13px; color: var(--text2); line-height: 1.5; }
+
+.deal-store-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 13px;
+  color: var(--blue);
+  text-decoration: none;
+  font-weight: 500;
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: var(--blue-light);
+  transition: background 0.15s;
+  width: fit-content;
+}
+.deal-store-link:hover { background: #cfe6f8; }
+.deal-store-link svg { flex-shrink: 0; }
+
+.deal-map-links {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 2px;
+}
+.map-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 3px 8px;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: opacity 0.15s;
+}
+.map-link:hover { opacity: 0.8; }
+.map-link-google { background: #fce8e6; color: #c5221f; }
+.map-link-apple { background: #e8f0fe; color: #1967d2; }
+
+.deal-footer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-top: 1px solid var(--border);
+  padding-top: 10px;
+  margin-top: auto;
+}
+.poster-avatar {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: #fff;
+  font-family: 'Syne', sans-serif;
+  flex-shrink: 0;
+}
+.poster-name { font-size: 12px; color: var(--text2); font-weight: 500; }
+.footer-spacer { flex: 1; }
+.like-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  border: 1px solid var(--border-strong);
+  background: transparent;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text2);
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.15s;
+}
+.like-btn:hover { background: var(--orange-light); color: var(--orange); border-color: #f0997b; }
+.like-btn.liked { background: var(--orange-light); color: var(--orange); border-color: #f0997b; }
+
+.expiry-tag {
+  font-size: 11px;
+  padding: 2px 7px;
+  border-radius: 5px;
+  font-weight: 500;
+}
+.expiry-ok { background: var(--green-light); color: var(--green-dark); }
+.expiry-soon { background: var(--amber-light); color: var(--amber); }
+.expiry-expired { background: var(--red-light); color: var(--red); }
+
+.del-btn {
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  color: var(--text3);
+  transition: all 0.15s;
+}
+.del-btn:hover { background: var(--red-light); color: var(--red); border-color: #f09595; }
+
+.empty-state {
+  grid-column: 1/-1;
+  text-align: center;
+  padding: 4rem 2rem;
+  color: var(--text3);
+}
+.empty-state .es-icon { font-size: 48px; margin-bottom: 12px; }
+.empty-state h3 { font-family: 'Syne', sans-serif; font-size: 18px; color: var(--text2); margin-bottom: 6px; }
+.empty-state p { font-size: 14px; }
+
+/* ── MODALS ── */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  z-index: 200;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+.overlay.open { display: flex; }
+
+.modal {
+  background: var(--surface);
+  border-radius: 20px;
+  padding: 1.75rem;
+  width: 100%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  animation: modalIn 0.2s ease;
+}
+.modal-sm { max-width: 400px; }
+@keyframes modalIn { from { opacity:0; transform: scale(0.96) translateY(8px); } to { opacity:1; transform:none; } }
+
+.modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--surface2);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: var(--text2);
+  transition: background 0.15s;
+}
+.modal-close:hover { background: var(--red-light); color: var(--red); }
+
+.modal-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 1.5rem;
+}
+.modal-logo .nav-logo-icon { width: 30px; height: 30px; font-size: 15px; border-radius: 8px; }
+.modal-logo span { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 16px; }
+.modal-logo span b { color: var(--green); }
+
+.modal h2 {
+  font-family: 'Syne', sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+.modal-sub { font-size: 14px; color: var(--text2); margin-bottom: 1.5rem; }
+
+.tabs {
+  display: flex;
+  gap: 0;
+  margin-bottom: 1.5rem;
+  background: var(--surface2);
+  border-radius: 10px;
+  padding: 3px;
+}
+.tab-btn {
+  flex: 1;
+  padding: 8px;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer;
+  color: var(--text2);
+  transition: all 0.15s;
+}
+.tab-btn.active { background: var(--surface); color: var(--text); box-shadow: var(--shadow-card); }
+
+.field { margin-bottom: 14px; }
+.field label {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text2);
+  margin-bottom: 5px;
+}
+.field input, .field select, .field textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  color: var(--text);
+  background: var(--surface);
+  font-family: 'DM Sans', sans-serif;
+  transition: border-color 0.15s;
+  outline: none;
+}
+.field input:focus, .field select:focus, .field textarea:focus {
+  border-color: var(--green);
+  box-shadow: 0 0 0 3px rgba(29,158,117,0.1);
+}
+.field textarea { resize: vertical; min-height: 72px; }
+.row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+.field-hint { font-size: 11px; color: var(--text3); margin-top: 4px; }
+
+.photo-upload {
+  border: 2px dashed var(--border-strong);
+  border-radius: var(--radius-sm);
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.15s;
+  background: var(--surface2);
+}
+.photo-upload:hover { border-color: var(--green); background: var(--green-light); }
+.photo-upload input { display: none; }
+.photo-preview {
+  width: 100%;
+  max-height: 160px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  margin-top: 10px;
+  display: none;
+}
+
+.modal-btns {
+  display: flex;
+  gap: 10px;
+  margin-top: 1.5rem;
+}
+.modal-btns .btn { flex: 1; padding: 11px; border-radius: 10px; font-size: 15px; }
+
+.auth-switch { text-align: center; font-size: 13px; color: var(--text2); margin-top: 1rem; }
+.auth-switch a { color: var(--green); font-weight: 500; cursor: pointer; text-decoration: none; }
+.auth-switch a:hover { text-decoration: underline; }
+
+.error-msg {
+  background: var(--red-light);
+  color: var(--red);
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 13px;
+  margin-bottom: 12px;
+  display: none;
+}
+
+/* ── USER DROPDOWN ── */
+.user-menu {
+  position: absolute;
+  top: 58px;
+  right: 1.25rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  z-index: 100;
+  overflow: hidden;
+  min-width: 200px;
+  display: none;
+}
+.user-menu.open { display: block; animation: modalIn 0.15s ease; }
+.user-menu-header {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+}
+.user-menu-name { font-weight: 600; font-size: 14px; }
+.user-menu-email { font-size: 12px; color: var(--text3); }
+.user-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  font-size: 14px;
+  color: var(--text2);
+  cursor: pointer;
+  transition: background 0.1s;
+}
+.user-menu-item:hover { background: var(--surface2); }
+.user-menu-item.danger { color: var(--red); }
+.user-menu-item.danger:hover { background: var(--red-light); }
+
+/* ── TOAST ── */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: var(--text);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 24px;
+  font-size: 14px;
+  z-index: 1000;
+  transition: transform 0.3s ease;
+  white-space: nowrap;
+}
+.toast.show { transform: translateX(-50%) translateY(0); }
+
+/* ── ADD BTN FAB ── */
+.fab {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: var(--green);
+  color: #fff;
+  border: none;
+  border-radius: 24px;
+  padding: 13px 22px;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: 'Syne', sans-serif;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(29,158,117,0.4);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s;
+  z-index: 40;
+}
+.fab:hover { background: var(--green-dark); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(29,158,117,0.45); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo" onclick="return false;">
+      <div class="nav-logo-icon">🛒</div>
+      Bons<span>Plans</span>
+    </a>
+    <div class="nav-search">
+      <span class="nav-search-icon">🔍</span>
+      <input type="text" id="nav-search" placeholder="Chercher un produit, une enseigne…" oninput="renderDeals()" />
+    </div>
+    <div class="nav-spacer"></div>
+    <div class="nav-btns" id="nav-btns">
+      <button class="btn btn-ghost btn-sm" onclick="openAuth('login')">Se connecter</button>
+      <button class="btn btn-primary btn-sm" onclick="openAuth('signup')">S'inscrire</button>
+    </div>
+  </div>
+  <div class="user-menu" id="user-menu">
+    <div class="user-menu-header">
+      <div class="user-menu-name" id="um-name"></div>
+      <div class="user-menu-email" id="um-email"></div>
+    </div>
+    <div class="user-menu-item" onclick="closeUserMenu(); openAddDeal()">📣 Partager un bon plan</div>
+    <div class="user-menu-item danger" onclick="logout()">🚪 Se déconnecter</div>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- HERO -->
+  <div class="hero" id="hero-section">
+    <div class="hero-emoji">💰</div>
+    <div>
+      <h2>Trouvez et partagez les meilleures promos</h2>
+      <p>La communauté qui chasse les bons plans supermarché pour vous</p>
+    </div>
+    <div class="hero-cta">
+      <button class="btn" onclick="openAuth('signup')">Rejoindre gratuitement</button>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat-card">
+      <div class="stat-num" id="stat-count">0</div>
+      <div class="stat-label">Bons plans actifs</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" id="stat-stores">0</div>
+      <div class="stat-label">Enseignes référencées</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" id="stat-users">0</div>
+      <div class="stat-label">Membres</div>
+    </div>
+  </div>
+
+  <!-- TOOLBAR -->
+  <div class="toolbar">
+    <span class="toolbar-title">Les bons plans du moment</span>
+    <div class="filter-chips">
+      <button class="chip active" onclick="setFilter('all',this)">Tous</button>
+      <button class="chip" onclick="setFilter('promo',this)">🏷️ Promo</button>
+      <button class="chip" onclick="setFilter('reduc',this)">💰 Réduction</button>
+      <button class="chip" onclick="setFilter('lot',this)">📦 Lot</button>
+      <button class="chip" onclick="setFilter('cashback',this)">↩️ Cashback</button>
+      <button class="chip" onclick="setFilter('gratuit',this)">🎁 Gratuit</button>
+    </div>
+  </div>
+
+  <!-- CARDS GRID -->
+  <div class="cards-grid" id="cards-grid"></div>
+
+</div>
+
+<!-- FAB -->
+<button class="fab" id="fab-btn" onclick="requireAuth(openAddDeal)" style="display:none">
+  + Partager un bon plan
+</button>
+
+<!-- ── AUTH MODAL ── -->
+<div class="overlay" id="auth-overlay" onclick="closeOverlay(event,'auth-overlay')">
+  <div class="modal modal-sm">
+    <button class="modal-close" onclick="closeModal('auth-overlay')">✕</button>
+    <div class="modal-logo">
+      <div class="nav-logo-icon">🛒</div>
+      <span>Bons<b>Plans</b></span>
+    </div>
+    <div class="tabs">
+      <button class="tab-btn active" id="tab-login" onclick="switchTab('login')">Se connecter</button>
+      <button class="tab-btn" id="tab-signup" onclick="switchTab('signup')">S'inscrire</button>
+    </div>
+    <div class="error-msg" id="auth-error"></div>
+
+    <!-- LOGIN -->
+    <div id="login-form">
+      <div class="field">
+        <label>Adresse e-mail</label>
+        <input type="email" id="login-email" placeholder="votre@email.fr" />
+      </div>
+      <div class="field">
+        <label>Mot de passe</label>
+        <input type="password" id="login-pwd" placeholder="••••••••" />
+      </div>
+      <div class="modal-btns">
+        <button class="btn btn-primary" onclick="doLogin()">Se connecter</button>
+      </div>
+      <div class="auth-switch">Pas encore de compte ? <a onclick="switchTab('signup')">S'inscrire</a></div>
+    </div>
+
+    <!-- SIGNUP -->
+    <div id="signup-form" style="display:none">
+      <div class="row2">
+        <div class="field">
+          <label>Prénom</label>
+          <input type="text" id="su-firstname" placeholder="Marie" />
+        </div>
+        <div class="field">
+          <label>Nom</label>
+          <input type="text" id="su-lastname" placeholder="Dupont" />
+        </div>
+      </div>
+      <div class="field">
+        <label>Adresse e-mail</label>
+        <input type="email" id="su-email" placeholder="votre@email.fr" />
+      </div>
+      <div class="field">
+        <label>Mot de passe</label>
+        <input type="password" id="su-pwd" placeholder="Minimum 6 caractères" />
+      </div>
+      <div class="modal-btns">
+        <button class="btn btn-primary" onclick="doSignup()">Créer mon compte</button>
+      </div>
+      <div class="auth-switch">Déjà un compte ? <a onclick="switchTab('login')">Se connecter</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- ── ADD DEAL MODAL ── -->
+<div class="overlay" id="add-overlay" onclick="closeOverlay(event,'add-overlay')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('add-overlay')">✕</button>
+    <h2>Partager un bon plan</h2>
+    <p class="modal-sub">Aidez la communauté à économiser !</p>
+
+    <div class="field">
+      <label>Produit *</label>
+      <input type="text" id="f-title" placeholder="Ex : Nutella 1kg, Coca-Cola x6…" />
+    </div>
+
+    <div class="row2">
+      <div class="field">
+        <label>Type de bon plan *</label>
+        <select id="f-type">
+          <option value="promo">🏷️ Promo</option>
+          <option value="reduc">💰 Réduction</option>
+          <option value="lot">📦 Lot / 2+1</option>
+          <option value="cashback">↩️ Cashback</option>
+          <option value="gratuit">🎁 Gratuit / ODR</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Économie réalisée</label>
+        <input type="text" id="f-savings" placeholder="Ex : -50%, -2€, Gratuit" />
+      </div>
+    </div>
+
+    <div class="row2">
+      <div class="field">
+        <label>Enseigne (nom du magasin) *</label>
+        <input type="text" id="f-store" placeholder="Ex : Leclerc, Carrefour…" />
+      </div>
+      <div class="field">
+        <label>Ville *</label>
+        <input type="text" id="f-city" placeholder="Ex : Rennes, Lyon…" />
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Description</label>
+      <textarea id="f-desc" placeholder="Détails, conditions, rayon, numéro d'article…"></textarea>
+    </div>
+
+    <div class="field">
+      <label>Date d'expiration</label>
+      <input type="date" id="f-expiry" />
+    </div>
+
+    <div class="field">
+      <label>Photo du bon plan (optionnel)</label>
+      <div class="photo-upload" onclick="document.getElementById('f-photo').click()">
+        <div id="photo-label">📷 Cliquez pour ajouter une photo</div>
+        <div class="field-hint">JPG, PNG, WEBP — max 5 Mo</div>
+        <input type="file" id="f-photo" accept="image/*" onchange="handlePhoto(this)" />
+        <img id="photo-preview" class="photo-preview" />
+      </div>
+    </div>
+
+    <div class="modal-btns">
+      <button class="btn btn-ghost" onclick="closeModal('add-overlay')">Annuler</button>
+      <button class="btn btn-primary" onclick="saveDeal()">Publier le bon plan 🚀</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ── STATE ──
+let currentUser = null;
+let currentFilter = 'all';
+let photoDataUrl = null;
+
+const USERS_KEY = 'bpc_users';
+const DEALS_KEY = 'bpc_deals';
+
+const TYPE_LABELS = { promo: 'Promo', reduc: 'Réduction', lot: 'Lot', cashback: 'Cashback', gratuit: 'Gratuit' };
+const TYPE_EMOJIS = { promo: '🏷️', reduc: '💰', lot: '📦', cashback: '↩️', gratuit: '🎁' };
+const STORE_COLORS = ['#1D9E75','#D85A30','#378ADD','#BA7517','#993556','#534AB7','#0F6E56'];
+
+// ── STORAGE ──
+function getUsers() { try { return JSON.parse(localStorage.getItem(USERS_KEY) || '[]'); } catch(e) { return []; } }
+function saveUsers(u) { localStorage.setItem(USERS_KEY, JSON.stringify(u)); }
+function getDeals() { try { return JSON.parse(localStorage.getItem(DEALS_KEY) || 'null') || getSeedDeals(); } catch(e) { return getSeedDeals(); } }
+function saveDeals(d) { localStorage.setItem(DEALS_KEY, JSON.stringify(d)); }
+
+function getSeedDeals() {
+  return [
+    { id: 1, title: 'Coca-Cola 1.5L × 6', type: 'lot', savings: '2ème à -50%', store: 'Carrefour', city: 'Rennes', desc: 'Valable en magasin et drive. Toutes variétés.', expiry: '2026-04-10', photo: null, authorId: 'seed', authorName: 'Marie D.', likes: 12, likedBy: [], date: '2026-04-01' },
+    { id: 2, title: 'Steaks hachés 15% MG', type: 'promo', savings: '-30%', store: 'Lidl', city: 'Rennes', desc: 'Barquette de 8 steaks. Rayon boucherie, valable jusqu\'au dimanche.', expiry: '2026-04-06', photo: null, authorId: 'seed', authorName: 'Thomas B.', likes: 8, likedBy: [], date: '2026-04-01' },
+    { id: 3, title: 'Lessive Ariel 3 kg', type: 'cashback', savings: '3 € remboursés', store: 'Leclerc', city: 'Saint-Grégoire', desc: 'Via l\'application Poulpeo après achat en caisse.', expiry: '2026-04-20', photo: null, authorId: 'seed', authorName: 'Sophie L.', likes: 5, likedBy: [], date: '2026-03-31' },
+    { id: 4, title: 'Yaourts Danone nature × 8', type: 'reduc', savings: '-1,20 €', store: 'Intermarché', city: 'Cesson-Sévigné', desc: 'Prix choc cette semaine, tous les parfums.', expiry: '2026-04-07', photo: null, authorId: 'seed', authorName: 'Lucas M.', likes: 3, likedBy: [], date: '2026-03-30' },
+    { id: 5, title: 'Shampooing Elseve 250 ml', type: 'gratuit', savings: '100% remboursé', store: 'Aldi', city: 'Bruz', desc: 'Offre de remboursement intégral sur le site L\'Oréal, valable 30 jours.', expiry: '2026-04-30', photo: null, authorId: 'seed', authorName: 'Emma R.', likes: 19, likedBy: [], date: '2026-03-29' },
+  ];
+}
+
+// ── AUTH ──
+function openAuth(tab) {
+  document.getElementById('auth-overlay').classList.add('open');
+  switchTab(tab);
+}
+
+function switchTab(tab) {
+  document.getElementById('login-form').style.display = tab === 'login' ? 'block' : 'none';
+  document.getElementById('signup-form').style.display = tab === 'signup' ? 'block' : 'none';
+  document.getElementById('tab-login').classList.toggle('active', tab === 'login');
+  document.getElementById('tab-signup').classList.toggle('active', tab === 'signup');
+  document.getElementById('auth-error').style.display = 'none';
+}
+
+function showAuthError(msg) {
+  const el = document.getElementById('auth-error');
+  el.textContent = msg;
+  el.style.display = 'block';
+}
+
+function doLogin() {
+  const email = document.getElementById('login-email').value.trim().toLowerCase();
+  const pwd = document.getElementById('login-pwd').value;
+  if (!email || !pwd) { showAuthError('Veuillez remplir tous les champs.'); return; }
+  const users = getUsers();
+  const user = users.find(u => u.email === email && u.pwd === pwd);
+  if (!user) { showAuthError('Email ou mot de passe incorrect.'); return; }
+  loginUser(user);
+  closeModal('auth-overlay');
+  toast('Bienvenue, ' + user.firstname + ' ! 👋');
+}
+
+function doSignup() {
+  const fn = document.getElementById('su-firstname').value.trim();
+  const ln = document.getElementById('su-lastname').value.trim();
+  const email = document.getElementById('su-email').value.trim().toLowerCase();
+  const pwd = document.getElementById('su-pwd').value;
+  if (!fn || !ln || !email || !pwd) { showAuthError('Veuillez remplir tous les champs.'); return; }
+  if (pwd.length < 6) { showAuthError('Le mot de passe doit contenir au moins 6 caractères.'); return; }
+  const users = getUsers();
+  if (users.find(u => u.email === email)) { showAuthError('Cet e-mail est déjà utilisé.'); return; }
+  const user = { id: 'u_' + Date.now(), firstname: fn, lastname: ln, email, pwd };
+  users.push(user);
+  saveUsers(users);
+  loginUser(user);
+  closeModal('auth-overlay');
+  toast('Compte créé ! Bienvenue, ' + fn + ' 🎉');
+}
+
+function loginUser(user) {
+  currentUser = user;
+  sessionStorage.setItem('bpc_session', JSON.stringify(user));
+  updateNavAuth();
+}
+
+function logout() {
+  currentUser = null;
+  sessionStorage.removeItem('bpc_session');
+  closeUserMenu();
+  updateNavAuth();
+  toast('Déconnecté(e) avec succès.');
+}
+
+function updateNavAuth() {
+  const btns = document.getElementById('nav-btns');
+  const fab = document.getElementById('fab-btn');
+  const hero = document.getElementById('hero-section');
+  if (currentUser) {
+    const initials = (currentUser.firstname[0] + currentUser.lastname[0]).toUpperCase();
+    const colorIdx = currentUser.id.charCodeAt(currentUser.id.length - 1) % STORE_COLORS.length;
+    btns.innerHTML = `<div class="user-avatar" style="background:${STORE_COLORS[colorIdx]}" onclick="toggleUserMenu()">${initials}</div>`;
+    document.getElementById('um-name').textContent = currentUser.firstname + ' ' + currentUser.lastname;
+    document.getElementById('um-email').textContent = currentUser.email;
+    fab.style.display = 'flex';
+    hero.style.display = 'none';
+  } else {
+    btns.innerHTML = `<button class="btn btn-ghost btn-sm" onclick="openAuth('login')">Se connecter</button><button class="btn btn-primary btn-sm" onclick="openAuth('signup')">S'inscrire</button>`;
+    fab.style.display = 'none';
+    hero.style.display = 'flex';
+  }
+  updateStats();
+  renderDeals();
+}
+
+function toggleUserMenu() {
+  document.getElementById('user-menu').classList.toggle('open');
+}
+function closeUserMenu() {
+  document.getElementById('user-menu').classList.remove('open');
+}
+document.addEventListener('click', e => {
+  if (!e.target.closest('.user-avatar') && !e.target.closest('#user-menu')) closeUserMenu();
+});
+
+function requireAuth(fn) {
+  if (!currentUser) { openAuth('login'); return; }
+  fn();
+}
+
+// ── ADD DEAL ──
+function openAddDeal() {
+  photoDataUrl = null;
+  document.getElementById('photo-preview').style.display = 'none';
+  document.getElementById('photo-label').textContent = '📷 Cliquez pour ajouter une photo';
+  ['f-title','f-savings','f-store','f-city','f-desc','f-expiry'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('f-type').value = 'promo';
+  document.getElementById('add-overlay').classList.add('open');
+}
+
+function handlePhoto(input) {
+  const file = input.files[0];
+  if (!file) return;
+  if (file.size > 5 * 1024 * 1024) { toast('Image trop lourde (max 5 Mo)'); return; }
+  const reader = new FileReader();
+  reader.onload = e => {
+    photoDataUrl = e.target.result;
+    const preview = document.getElementById('photo-preview');
+    preview.src = photoDataUrl;
+    preview.style.display = 'block';
+    document.getElementById('photo-label').textContent = '✅ Photo ajoutée';
+  };
+  reader.readAsDataURL(file);
+}
+
+function saveDeal() {
+  if (!currentUser) { toast('Connectez-vous pour publier.'); return; }
+  const title = document.getElementById('f-title').value.trim();
+  const store = document.getElementById('f-store').value.trim();
+  const city = document.getElementById('f-city').value.trim();
+  if (!title || !store || !city) { toast('Veuillez renseigner le produit, l\'enseigne et la ville.'); return; }
+  const deals = getDeals();
+  const d = {
+    id: Date.now(),
+    title,
+    type: document.getElementById('f-type').value,
+    savings: document.getElementById('f-savings').value.trim(),
+    store,
+    city,
+    desc: document.getElementById('f-desc').value.trim(),
+    expiry: document.getElementById('f-expiry').value,
+    photo: photoDataUrl,
+    authorId: currentUser.id,
+    authorName: currentUser.firstname + ' ' + currentUser.lastname[0] + '.',
+    likes: 0,
+    likedBy: [],
+    date: new Date().toLocaleDateString('fr-FR', { day:'2-digit', month:'2-digit', year:'numeric' }),
+  };
+  deals.unshift(d);
+  saveDeals(deals);
+  closeModal('add-overlay');
+  updateStats();
+  renderDeals();
+  toast('Bon plan publié ! Merci 🎉');
+}
+
+// ── DEALS RENDER ──
+function setFilter(f, el) {
+  currentFilter = f;
+  document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+  renderDeals();
+}
+
+function getFiltered() {
+  const q = (document.getElementById('nav-search')?.value || '').toLowerCase();
+  const deals = getDeals();
+  return deals.filter(d => {
+    const matchF = currentFilter === 'all' || d.type === currentFilter;
+    const matchQ = !q || d.title.toLowerCase().includes(q) || d.store.toLowerCase().includes(q) || (d.city||'').toLowerCase().includes(q) || (d.desc||'').toLowerCase().includes(q);
+    return matchF && matchQ;
+  });
+}
+
+function expiryInfo(expiry) {
+  if (!expiry) return null;
+  const now = new Date(); now.setHours(0,0,0,0);
+  const exp = new Date(expiry);
+  const diff = Math.ceil((exp - now) / 86400000);
+  if (diff < 0) return { label: 'Expiré', cls: 'expiry-expired' };
+  if (diff === 0) return { label: 'Expire aujourd\'hui !', cls: 'expiry-soon' };
+  if (diff <= 3) return { label: 'Expire dans ' + diff + 'j', cls: 'expiry-soon' };
+  return { label: 'Jusqu\'au ' + exp.toLocaleDateString('fr-FR', { day:'numeric', month:'short' }), cls: 'expiry-ok' };
+}
+
+function mapLinks(store, city) {
+  const q = encodeURIComponent(store + ' ' + city + ' France');
+  const gm = `https://www.google.com/maps/search/?api=1&query=${q}`;
+  const am = `https://maps.apple.com/?q=${q}`;
+  return { google: gm, apple: am };
+}
+
+function avatarColor(name) {
+  let hash = 0;
+  for (let i = 0; i < name.length; i++) hash = name.charCodeAt(i) + ((hash << 5) - hash);
+  return STORE_COLORS[Math.abs(hash) % STORE_COLORS.length];
+}
+
+function renderDeals() {
+  const filtered = getFiltered();
+  const grid = document.getElementById('cards-grid');
+  if (filtered.length === 0) {
+    grid.innerHTML = `<div class="empty-state"><div class="es-icon">🔍</div><h3>Aucun bon plan trouvé</h3><p>Soyez le premier à en partager un !</p></div>`;
+    return;
+  }
+  grid.innerHTML = filtered.map(d => {
+    const exp = expiryInfo(d.expiry);
+    const expired = exp && exp.cls === 'expiry-expired';
+    const maps = mapLinks(d.store, d.city || '');
+    const initials = d.authorName ? d.authorName.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase() : '?';
+    const avatarBg = avatarColor(d.authorId || d.authorName || '');
+    const liked = currentUser && (d.likedBy || []).includes(currentUser.id);
+    const isOwner = currentUser && d.authorId === currentUser.id;
+    return `
+    <div class="deal-card" style="${expired ? 'opacity:0.55;' : ''}">
+      ${d.photo
+        ? `<img class="deal-photo" src="${d.photo}" alt="${d.title}" />`
+        : `<div class="deal-photo-placeholder">${TYPE_EMOJIS[d.type]||'🏷️'}</div>`}
+      <div class="deal-body">
+        <div class="deal-top-row">
+          <span class="deal-type-badge badge-${d.type}">${TYPE_EMOJIS[d.type]} ${TYPE_LABELS[d.type]}</span>
+          ${d.savings ? `<span class="deal-savings">${d.savings}</span>` : ''}
+        </div>
+        <div class="deal-title">${d.title}</div>
+        ${d.desc ? `<div class="deal-desc">${d.desc}</div>` : ''}
+        <a class="deal-store-link" href="${maps.google}" target="_blank" rel="noopener" title="Voir sur Google Maps">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          ${d.store}${d.city ? ' · ' + d.city : ''}
+        </a>
+        <div class="deal-map-links">
+          <a class="map-link map-link-google" href="${maps.google}" target="_blank" rel="noopener">🗺 Google Maps</a>
+          <a class="map-link map-link-apple" href="${maps.apple}" target="_blank" rel="noopener">🍎 Plans Apple</a>
+        </div>
+        ${exp ? `<span class="expiry-tag ${exp.cls}">${exp.label}</span>` : ''}
+        <div class="deal-footer">
+          <div class="poster-avatar" style="background:${avatarBg}">${initials}</div>
+          <span class="poster-name">${d.authorName}</span>
+          <span style="font-size:11px;color:var(--text3);margin-left:2px;">· ${d.date}</span>
+          <div class="footer-spacer"></div>
+          <button class="like-btn ${liked?'liked':''}" onclick="toggleLike(${d.id})">
+            ${liked?'❤️':'🤍'} ${d.likes}
+          </button>
+          ${isOwner ? `<button class="del-btn" onclick="deleteDeal(${d.id})" title="Supprimer">✕</button>` : ''}
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function toggleLike(id) {
+  if (!currentUser) { openAuth('login'); return; }
+  const deals = getDeals();
+  const d = deals.find(x => x.id === id);
+  if (!d) return;
+  const idx = (d.likedBy || []).indexOf(currentUser.id);
+  if (idx === -1) { d.likedBy.push(currentUser.id); d.likes++; }
+  else { d.likedBy.splice(idx, 1); d.likes = Math.max(0, d.likes - 1); }
+  saveDeals(deals);
+  renderDeals();
+}
+
+function deleteDeal(id) {
+  if (!currentUser) return;
+  let deals = getDeals();
+  deals = deals.filter(d => !(d.id === id && d.authorId === currentUser.id));
+  saveDeals(deals);
+  updateStats();
+  renderDeals();
+  toast('Bon plan supprimé.');
+}
+
+// ── STATS ──
+function updateStats() {
+  const deals = getDeals();
+  const active = deals.filter(d => { if (!d.expiry) return true; return new Date(d.expiry) >= new Date(); });
+  const stores = new Set(deals.map(d => d.store.toLowerCase()));
+  const users = getUsers();
+  document.getElementById('stat-count').textContent = active.length;
+  document.getElementById('stat-stores').textContent = stores.size;
+  document.getElementById('stat-users').textContent = users.length + 1;
+}
+
+// ── MODALS UTILS ──
+function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+function closeOverlay(e, id) { if (e.target.id === id) closeModal(id); }
+
+// ── TOAST ──
+function toast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), 3000);
+}
+
+// ── INIT ──
+(function init() {
+  try {
+    const sess = sessionStorage.getItem('bpc_session');
+    if (sess) currentUser = JSON.parse(sess);
+  } catch(e) {}
+  if (!localStorage.getItem(DEALS_KEY)) saveDeals(getSeedDeals());
+  updateNavAuth();
+})();
+</script>
+</body>
+</html>
